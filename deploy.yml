@@ -9,16 +9,28 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+stages:
+- stage: A
+  jobs:
+  - job: A1
+  - job: A2
 
-steps:
-- task: TerraformInstaller@0
-  inputs:
-    terraformVersion: '1.3.8'
+- stage: B
+  jobs:
+  - job: B1
+  - job: B2
+  
+# steps:
+# - task: TerraformInstaller@0
+#   inputs:
+#     terraformVersion: '1.3.8'
 
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+
+# - script: echo Hello, world!
+#   displayName: 'Run a one-line script'
+
+# - script: |
+#     echo Add other tasks to build, test, and deploy your project.
+#     echo See https://aka.ms/yaml
+#   displayName: 'Run a multi-line script'
