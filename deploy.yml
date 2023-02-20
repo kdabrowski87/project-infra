@@ -9,16 +9,25 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-stages:
-- stage: A
-  jobs:
-  - job: A1
-  - job: A2
+variables:
+  major: 1
+  # define minor as a counter with the prefix as variable major, and seed as 100.
+  minor: $[counter(variables['major'], 100)]
 
-- stage: B
-  jobs:
-  - job: B1
-  - job: B2
+steps:
+- bash: echo $(minor)
+
+# stages:
+# - stage: A
+#   jobs:
+#   - job: A1
+#   - job: A2
+
+# - stage: B
+#   jobs:
+#   - job: B1
+#   - job: B2
+#   condition: 
   
 # steps:
 # - task: TerraformInstaller@0
