@@ -1,9 +1,13 @@
+
+
 trigger:
 - main
 
 variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
+
+name: Infra Provisioning CI/CD
 
 stages: 
     - stage: ProvisionInfra 
