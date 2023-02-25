@@ -6,6 +6,11 @@ trigger:
 variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
+  terraformVersion: 1.3.8
+  subscriptionID: 74f0cd84-7431-441a-848c-39274e643e68
+  backend_rg_name: kd1987-terraform-rg
+  backend_rg_location: westeurope
+  backend_rg_sa: kd1987terraformsa
 
 name: Infra Provisioning CI/CD
 
@@ -19,8 +24,25 @@ stages:
           vmImage: $(vmImageName)
         steps:
           - task: TerraformInstaller@0
+            displayName: Install proper Terraform version
             inputs:
-              terraformVersion: '1.3.8'
+              terraformVersion: $(terraformVersion)
+              
+          # - task: TerraformCLI@0
+          #   displayName: init
+          #   inputs:
+          #     command: 'init'
+          #     backendType: 'azurerm'
+          #     backendServiceArm: 'main subscription'
+          #     backendAzureRmSubscriptionId: 'test'
+          #     ensureBackend: true
+          #     backendAzureRmResourceGroupName: 'rg_name'
+          #     backendAzureRmResourceGroupLocation: 'rg_location'
+          #     backendAzureRmStorageAccountName: 'rg_sa'
+          #     backendAzureRmStorageAccountSku: 'Standard_LRS'
+          #     backendAzureRmContainerName: 'rg_container'
+          #     backendAzureRmKey: 'rg_key'
+          #     allowTelemetryCollection: true
 
           - script: echo Hello, world!
             displayName: 'Run a one-line script'
